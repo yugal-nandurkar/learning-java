@@ -1,0 +1,299 @@
+The Nashorn JavaScript Engine is a JavaScript runtime that was introduced in Java 8 as a part of the Java Platform,
+ Standard Edition (JDK). It allows you to run JavaScript code within Java applications. Nashorn is based on the
+ invokedynamic feature introduced in Java 7 and is designed to replace the older Rhino engine. Here are the key
+ functionalities of the Nashorn JavaScript engine:
+
+Key Functionalities of Nashorn:
+Embedding JavaScript in Java Applications:
+
+Allows Java applications to embed and execute JavaScript code at runtime.
+You can create and manipulate JavaScript objects from within Java, and vice versa.
+JavaScript Execution:
+
+Executes JavaScript code directly within the Java environment.
+Supports running JavaScript code through Java’s ScriptEngine API (javax.script.ScriptEngine).
+Can execute JavaScript code dynamically using eval() or exec().
+Accessing Java from JavaScript:
+
+Java classes, methods, and objects can be accessed and manipulated directly from JavaScript.
+Nashorn allows JavaScript to instantiate Java classes and call Java methods.
+Accessing JavaScript from Java:
+
+Java code can interact with JavaScript objects, variables, and functions.
+JavaScript objects can be treated as Java objects, which can be passed around and manipulated.
+Performance Improvements:
+
+Nashorn is more performant than Rhino due to its use of the invokedynamic mechanism in Java, which dynamically optimizes
+ calls between JavaScript and Java.
+It compiles JavaScript into Java bytecode at runtime, making execution faster.
+JavaScript Engines and ScriptContexts:
+
+Nashorn integrates with the javax.script API to provide a scripting engine for JavaScript. This allows you to evaluate
+scripts, create bindings for JavaScript variables, and interact with Java objects within the script context.
+The ScriptEngine provides methods like eval(), put(), get(), and createBindings() for managing the execution context.
+Support for ECMAScript 5.1 and ECMAScript 6:
+
+Nashorn supports ECMAScript 5.1 and partially supports ECMAScript 6 (ES6).
+Features like let, const, and arrow functions are supported in Nashorn, though there may be certain limitations or
+performance issues with some ES6 features.
+Interfacing with Java Collections:
+
+Java collections can be used and manipulated directly in JavaScript through Nashorn, allowing seamless integration between
+Java and JavaScript collections.
+Scripting API Integration:
+
+You can use the ScriptEngineManager to create a Nashorn engine and execute JavaScript code, or integrate with Java's
+scripting infrastructure for various use cases.
+The engine supports standard methods like eval(), exec(), and evalScript() to evaluate JavaScript expressions.
+JS to JavaScript Object Conversion:
+
+Nashorn can automatically convert between JavaScript objects and Java objects, which enables smoother interoperation
+between Java and JavaScript.
+Use of Java 8 Lambda and Streams:
+
+Nashorn is capable of calling Java 8 lambda expressions and Streams from JavaScript, allowing JavaScript to work with
+modern Java features.
+Compile JavaScript to Java Bytecode:
+
+Nashorn compiles JavaScript code to Java bytecode ahead of time, making it run faster and be more efficient than
+interpreting JavaScript at runtime like previous engines.
+Example Use of Nashorn in Java:
+java
+Copy code
+import javax.script.ScriptEngine;
+import javax.script.ScriptEngineManager;
+import javax.script.ScriptException;
+
+public class NashornExample {
+    public static void main(String[] args) throws ScriptException {
+        // Create a Nashorn script engine
+        ScriptEngine engine = new ScriptEngineManager().getEngineByName("nashorn");
+
+        // JavaScript code to be executed
+        String script = "var greeting = 'Hello, ' + name; greeting;";
+
+        // Create a binding and pass a Java variable to JavaScript
+        engine.put("name", "World");
+
+        // Evaluate the JavaScript
+        Object result = engine.eval(script);
+
+        // Output the result of JavaScript execution
+        System.out.println(result);  // Outputs: Hello, World
+    }
+}
+Deprecation of Nashorn:
+As of JDK 11, Nashorn has been deprecated for future removal. This is due to the rise of other JavaScript engines
+like GraalVM and better integration with external engines like Node.js. For new projects, it's recommended to explore
+ GraalVM or other more modern JavaScript engines for Java integration.
+
+In Summary, Nashorn Provides:
+Seamless integration between Java and JavaScript.
+Improved performance over previous engines.
+Execution of JavaScript code from Java applications.
+Interoperability between Java and JavaScript objects.
+Access to ECMAScript 5.1 and some ES6 features.
+Deprecation in JDK 11, with a recommendation to use alternatives like GraalVM for future development.
+
+Let’s explore how Nashorn can be applied in the context of a Post Office system, demonstrating its key functionalities:
+
+1. Embedding JavaScript in Java Applications
+In a Post Office system, you may want to execute custom processing logic (e.g., dynamic pricing calculations or
+custom handling for delivery options) using JavaScript at runtime. Nashorn allows you to embed and execute JavaScript
+dynamically within a Java application.
+
+Example:
+java
+Copy code
+import javax.script.ScriptEngine;
+import javax.script.ScriptEngineManager;
+import javax.script.ScriptException;
+
+public class PostOffice {
+    public static void main(String[] args) throws ScriptException {
+        // Create Nashorn script engine
+        ScriptEngine engine = new ScriptEngineManager().getEngineByName("nashorn");
+
+        // JavaScript code to calculate delivery cost based on weight
+        String script = "var cost = weight * rate; cost;";
+
+        // Define variables for the script
+        engine.put("weight", 5.0); // weight in kilograms
+        engine.put("rate", 2.5);   // rate per kilogram
+
+        // Execute script and calculate cost
+        Object result = engine.eval(script);
+
+        // Output the result
+        System.out.println("Delivery cost: " + result); // Delivery cost: 12.5
+    }
+}
+In this example, we dynamically calculate the delivery cost using JavaScript logic embedded in the Java application.
+
+2. JavaScript Execution
+Nashorn allows running JavaScript code directly within Java. For instance, a Post Office system might have a
+Java backend that allows users to submit delivery tracking information, which could be dynamically processed
+using JavaScript.
+
+Example of Running JavaScript Dynamically:
+java
+Copy code
+import javax.script.ScriptEngine;
+import javax.script.ScriptEngineManager;
+import javax.script.ScriptException;
+
+public class PostOffice {
+    public static void main(String[] args) throws ScriptException {
+        // Create Nashorn script engine
+        ScriptEngine engine = new ScriptEngineManager().getEngineByName("nashorn");
+
+        // Dynamic JavaScript code for changing delivery status
+        String script = "function updateStatus(status) { return 'Delivery is ' + status; } updateStatus('Shipped');";
+
+        // Execute JavaScript code
+        Object result = engine.eval(script);
+
+        // Output the result
+        System.out.println(result); // Delivery is Shipped
+    }
+}
+Here, we are dynamically executing JavaScript that updates the delivery status for a package.
+
+3. Accessing Java from JavaScript
+Java classes, methods, and objects can be accessed and manipulated directly from JavaScript using Nashorn.
+For example, we can allow JavaScript code to instantiate a Java Package class and access its properties.
+
+Example:
+java
+Copy code
+import javax.script.ScriptEngine;
+import javax.script.ScriptEngineManager;
+import javax.script.ScriptException;
+
+public class Package {
+    private String recipient;
+    private double weight;
+
+    public Package(String recipient, double weight) {
+        this.recipient = recipient;
+        this.weight = weight;
+    }
+
+    public String getRecipient() {
+        return recipient;
+    }
+
+    public double getWeight() {
+        return weight;
+    }
+}
+
+public class PostOffice {
+    public static void main(String[] args) throws ScriptException {
+        // Create Nashorn engine
+        ScriptEngine engine = new ScriptEngineManager().getEngineByName("nashorn");
+
+        // Pass Java object to JavaScript
+        Package package = new Package("John Doe", 3.5);
+        engine.put("package", package);
+
+        // JavaScript accessing the Java object
+        String script = "package.getRecipient() + ' has a package weighing ' + package.getWeight() + 'kg';";
+        Object result = engine.eval(script);
+
+        System.out.println(result); // John Doe has a package weighing 3.5kg
+    }
+}
+In this case, JavaScript interacts with a Java object (Package) to access its properties.
+
+4. Accessing JavaScript from Java
+Nashorn allows Java code to interact with JavaScript objects, variables, and functions. For example, you can call a
+JavaScript function from your Java code and pass Java variables to it.
+
+Example:
+java
+Copy code
+import javax.script.ScriptEngine;
+import javax.script.ScriptEngineManager;
+import javax.script.ScriptException;
+
+public class PostOffice {
+    public static void main(String[] args) throws ScriptException {
+        // Create Nashorn script engine
+        ScriptEngine engine = new ScriptEngineManager().getEngineByName("nashorn");
+
+        // JavaScript function to calculate delivery time based on distance
+        String script = "function calculateTime(distance) { return distance / 60; }";
+
+        // Execute the JavaScript function
+        engine.eval(script);
+
+        // Call the JavaScript function from Java
+        Object result = engine.eval("calculateTime(180)");
+
+        System.out.println("Delivery time: " + result + " hours"); // Delivery time: 3.0 hours
+    }
+}
+Here, we define a JavaScript function (calculateTime) in Java, which is then called from Java to calculate the delivery
+ time based on distance.
+
+5. Performance Improvements
+Nashorn is designed for better performance compared to the older Rhino engine. It compiles JavaScript code into
+ Java bytecode at runtime, which improves execution speed. This is particularly useful in performance-sensitive
+ applications such as real-time tracking in a Post Office system.
+
+For example, complex delivery processing logic in a Post Office system can be executed faster because Nashorn optimizes
+dynamic JavaScript code calls.
+
+6. Interfacing with Java Collections
+You can seamlessly interact with Java collections (e.g., lists, maps) from JavaScript using Nashorn. This allows you to
+manipulate and process large amounts of delivery data dynamically.
+
+Example:
+java
+Copy code
+import javax.script.ScriptEngine;
+import javax.script.ScriptEngineManager;
+import javax.script.ScriptException;
+import java.util.Arrays;
+import java.util.List;
+
+public class PostOffice {
+    public static void main(String[] args) throws ScriptException {
+        // Create Nashorn script engine
+        ScriptEngine engine = new ScriptEngineManager().getEngineByName("nashorn");
+
+        // Define a Java list in Java
+        List<String> deliveries = Arrays.asList("Package 1", "Package 2", "Package 3");
+
+        // Pass the Java list to JavaScript
+        engine.put("deliveries", deliveries);
+
+        // JavaScript to iterate over the list and print delivery names
+        String script = "deliveries.forEach(function(delivery) { print(delivery); });";
+        engine.eval(script);
+    }
+}
+In this case, Nashorn enables the manipulation of a Java List in JavaScript.
+
+7. Compile JavaScript to Java Bytecode
+Nashorn compiles JavaScript code to Java bytecode, which makes execution faster. This is beneficial in a Post Office
+system where real-time processing of packages and tracking information may require efficient script execution.
+
+For example, complex sorting or filtering algorithms written in JavaScript for processing large delivery records can be
+ compiled for faster execution within
+ the Java environment.
+
+Summary of Functionalities in a Post Office Context:
+Embedding JavaScript in Java: Execute delivery-related calculations or dynamic business logic directly within
+the Post Office system.
+JavaScript Execution: Dynamically process status updates or delivery routes in real-time.
+Accessing Java from JavaScript: JavaScript can access and manipulate Java objects, such as package details or delivery
+ status.
+Accessing JavaScript from Java: Java can call JavaScript functions, for example, to calculate delivery costs or time.
+Performance Improvements: Nashorn’s optimized execution can be used for fast and efficient package tracking or order
+processing.
+Interfacing with Java Collections: Dynamically process collections of delivery records or customers using JavaScript.
+Compile JavaScript to Bytecode: Run more efficient code for time-sensitive applications like real-time delivery tracking.
+Nashorn enables dynamic JavaScript-based customization, improving flexibility, performance, and functionality within Java
+ applications, like a Post Office system.

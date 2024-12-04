@@ -1,0 +1,7 @@
+Key Points
+Conciseness and readability: The code is verbose and includes repetitive structures.
+Reusability: Methods and structures are specific and not generalized for reuse.
+Testability and maintainability: No abstractions or modular design to make testing or maintenance easier.
+Concurrency: Operations on the account list are not thread-safe.
+Parallelism and database-like operations: No use of streams or advanced collections to enable such features.
+Performance: Uses basic loops and structures without performance considerations.

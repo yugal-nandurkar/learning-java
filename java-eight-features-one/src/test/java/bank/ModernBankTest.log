@@ -1,0 +1,12 @@
+Explanation
+Setup with @BeforeEach:
+
+Creates a fresh ConcurrentHashMap of Account objects for each test.
+Populates it with two accounts.
+Unit Tests:
+
+testAccountCreation: Verifies the creation of a new Account with correct initial values.
+testDeposit: Tests deposit functionality, including invalid deposits (negative amounts).
+testWithdraw: Verifies withdrawals, overdraft prevention, and invalid amounts.
+testConcurrentDeposits: Simulates concurrent deposits using threads.
+testParallelOperations: Verifies updates across accounts in parallel.

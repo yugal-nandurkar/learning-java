@@ -1,0 +1,7 @@
+Summary of Features
+Persistence: Delivery data is stored in a relational database using JPA.
+Validation: Ensures robust input validation for delivery details.
+Advanced Parallelism: Updates delivery status asynchronously using CompletableFuture.
+Enhanced Security: Protects endpoints with authentication using Spring Security.
+REST API: Exposes CRUD operations for integration with external systems.
+This structure allows for modular, testable, and production-ready code while leveraging modern Java and Spring Boot features.

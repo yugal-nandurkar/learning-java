@@ -1,0 +1,165 @@
+Features Demonstrated:
+Conciseness and Readability:
+
+Uses modern constructs like switch expressions and lambdas for clarity and brevity.
+Avoids verbose boilerplate.
+Reusability:
+
+Common operations like deposit and withdraw are encapsulated in the Account class.
+Thread-safe ConcurrentHashMap simplifies account management.
+Testability and Maintainability:
+
+Modular design with small, single-responsibility methods.
+Easy to mock and test individual components.
+Concurrency:
+
+Synchronized methods in the Account class for thread-safe operations.
+Parallel operations using an ExecutorService.
+Parallel Code:
+
+Demonstrates parallel deposits using a pool of threads.
+Database-Like Operations:
+
+Uses streams for sorting and filtering accounts efficiently.
+Performance:
+
+Efficient account lookups and updates with ConcurrentHashMap.
+Leveraged threading for improved performance under high load.
+Productivity:
+
+Modern constructs and utilities make the code easier and faster to write and extend.
+This design is clean, extensible, and adheres to modern best practices while ensuring it is highly concurrent and productive.
+
+The ModernBank application uses modern Java concurrency constructs and thread-safe collections to implement a simple yet
+powerful banking system. Below are the highlights and key design aspects:
+
+Key Features
+Thread Safety:
+
+ConcurrentHashMap ensures safe concurrent access to accounts.
+synchronized methods in the Account class safeguard balance modifications against race conditions.
+ExecutorService:
+
+Manages parallel operations efficiently using a thread pool (Executors.newCachedThreadPool).
+Functional Programming:
+
+Streams and lambdas simplify the code for operations like sorting and task generation.
+Interactive Menu:
+
+A clear, menu-driven interface for creating accounts, viewing details, depositing, withdrawing, and testing parallel operations.
+Core Methods
+createAccount(Scanner scanner)
+
+Allows creating an account with a unique number, holder name, and initial balance.
+Stores the account in a thread-safe map.
+viewAccounts()
+
+Displays all accounts sorted by account number.
+Utilizes Java Streams for simplicity.
+deposit(Scanner scanner) and withdraw(Scanner scanner)
+
+Perform deposit and withdrawal operations, ensuring thread-safe balance updates.
+Verifies account existence before operations.
+runParallelOperations()
+
+Demonstrates concurrent deposits across all accounts.
+Uses the ExecutorService to execute tasks in parallel.
+Design Highlights
+Encapsulation and Modularity:
+
+The Account class encapsulates account properties and operations, making it independent of other components.
+Banking operations are modular and reusable.
+Concurrency:
+
+By using ConcurrentHashMap and synchronized methods, the system ensures data consistency in a multi-threaded environment.
+Performance:
+
+The ExecutorService enables non-blocking parallel operations.
+Delayed account viewing (using Thread.sleep) simulates real-world processing delays.
+Error Handling:
+
+Handles invalid inputs gracefully, such as non-existent account numbers during transactions.
+Potential Enhancements
+Persistence:
+
+Integrate with a database to store account details persistently.
+Replace ConcurrentHashMap with DAO or repository patterns.
+Validation:
+
+Validate inputs, such as ensuring non-negative deposit/withdrawal amounts and unique account numbers.
+Advanced Parallelism:
+
+Implement finer-grained control for parallel operations, such as using CompletableFuture for asynchronous processing.
+Enhanced Security:
+
+Add user authentication for account access.
+REST API:
+
+Expose banking operations as REST endpoints to enable remote access and integration.
+This implementation balances simplicity and modern practices, making it an excellent foundation for building a more
+feature-rich banking application.
+
+Step-by-Step Explanation of the Code:
+ConcurrentHashMap for Thread-Safe Accounts:
+
+accounts is a ConcurrentHashMap that stores account data, allowing safe access from multiple threads.
+ExecutorService for Parallelism:
+
+executorService is a cached thread pool to execute tasks concurrently.
+Interactive Menu Loop:
+
+The while loop provides an interactive menu for user commands until the program is terminated.
+Input Handling:
+
+Scanner is used to read user input for operations like creating accounts, deposits, and withdrawals.
+Account Class Definition:
+
+Account encapsulates account properties (accountNumber, accountHolder, balance) and provides synchronized methods for
+balance operations.
+Synchronized Deposit:
+
+Ensures thread-safe addition to the account balance.
+Synchronized Withdraw:
+
+Ensures thread-safe deduction from the account balance, only if sufficient funds are available.
+Create Account Method:
+
+Collects details like account number, holder name, and initial balance, and stores the account in the accounts map.
+View Accounts Method:
+
+Displays all accounts, sorted by account number, using streams for clean, concise output.
+Deposit Method:
+
+Prompts for account number and deposit amount, adds the amount to the balance, and displays the new balance.
+Withdraw Method:
+
+Prompts for account number and withdrawal amount, deducts the amount (if valid), and displays the new balance.
+Run Parallel Operations Method:
+
+Demonstrates concurrent deposits across all accounts using ExecutorService tasks.
+Simulated Delay for Viewing Accounts:
+
+Uses Thread.sleep to simulate processing delays and display account balances after parallel operations.
+Graceful Shutdown:
+
+Shuts down the executorService upon program exit to release resources.
+Thread-Safe Account Access:
+
+The ConcurrentHashMap and synchronized methods in Account prevent race conditions during concurrent modifications.
+Validation for Null Accounts:
+
+Ensures account existence before performing operations like deposit or withdrawal.
+Menu-Driven Interface:
+
+Offers clear, user-friendly options to perform banking tasks interactively.
+String Representation of Accounts:
+
+Overrides toString in Account to provide a readable format for account details.
+Sorted Display of Accounts:
+
+Sorts accounts by account number in viewAccounts for organized output.
+Parallel Deposits Using Streams:
+
+Converts accounts into tasks and executes deposits concurrently in runParallelOperations.
+This modular and thread-safe design ensures clarity, scalability, and safe concurrent operations in a multi-threaded
+banking application.

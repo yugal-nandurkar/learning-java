@@ -1,0 +1,45 @@
+How It Works
+Bean Registration: The myService bean is registered in the AppConfig class.
+
+Bean Retrieval:
+
+The ApplicationContext.getBean(String name) method returns an Object.
+Since the return type is generic, an explicit cast ((MyService) bean) is required to convert it to the desired type.
+Cast Expression: The MyService bean is explicitly cast from Object to MyService before calling its performTask() method.
+
+When to Use Cast Expressions in Spring
+Generic Retrieval:
+When retrieving beans from the ApplicationContext using generic methods like getBean(String name), which return an Object.
+
+Working with Collections:
+When dealing with generic collections of Spring-managed beans, such as retrieving beans by type or annotation.
+
+Dynamic Proxies:
+In cases where Spring creates dynamic proxy objects (e.g., for AOP or transactions), you may need to cast them to the
+appropriate interface.
+
+Alternative Without Cast (Type-Safe Retrieval)
+Instead of casting, you can directly retrieve the bean with a type-safe method:
+
+java
+Copy code
+MyService myService = context.getBean(MyService.class);
+myService.performTask();
+While the above approach is preferable for type safety, using a cast expression may still be necessary in
+scenarios involving reflection, dynamic bean retrieval, or working with raw Object types.
+
+Key Concepts Demonstrated
+Numeric Cast:
+Numeric values are cast from one primitive type to another (e.g., int to double or float to int). Spring's bean lifecycle
+demonstrates this through @Bean methods.
+
+Reference Cast:
+Beans of a parent type are cast to a child type using instanceof to check compatibility before the cast. This avoids
+runtime ClassCastException.
+
+Lambda Cast:
+Lambdas are explicitly cast to functional interfaces or intersection types, ensuring the correct target type is applied.
+
+Intersection Types:
+A lambda is cast to an intersection type to satisfy multiple interfaces, like MyFunctionalInterface and Serializable.
+

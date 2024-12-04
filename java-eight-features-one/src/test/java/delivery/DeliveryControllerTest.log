@@ -1,0 +1,16 @@
+Explanation of Test Cases
+testGetAllDeliveries:
+
+Verifies that the getAllDeliveries endpoint retrieves a list of deliveries correctly from the repository.
+testGetDeliveryById_Found:
+
+Tests the case where a delivery with the specified ID exists. It ensures that the correct delivery is returned.
+testGetDeliveryById_NotFound:
+
+Verifies that when a delivery is not found, an IllegalArgumentException is thrown with the correct message.
+testUpdateStatus:
+
+Ensures the updateStatus method interacts with the DeliveryService correctly and returns the updated delivery.
+testDeleteDelivery:
+
+Confirms that the deleteDelivery method successfully deletes a delivery by ID and returns a 204 No Content status.
