@@ -1,6 +1,7 @@
 package microteam.feature;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
 
 public class SortOne {
     public static void main(String[] args)

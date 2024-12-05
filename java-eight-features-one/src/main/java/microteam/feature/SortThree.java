@@ -1,6 +1,6 @@
 package microteam.feature;
 
-import java.util.*;
+import java.util.TreeMap;
 
 public class SortThree {
     public static void main(String[] args)

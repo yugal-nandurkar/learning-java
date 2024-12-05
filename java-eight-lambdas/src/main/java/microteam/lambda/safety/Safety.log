@@ -1,0 +1,52 @@
+Explanation
+Safe Approach
+Immutable Collections:
+
+By converting the list to an immutable one, we prevent changes to its state during parallel processing.
+Even if a lambda operates on the list elements, the list itself cannot be modified.
+Thread-Safety:
+
+Each lambda uses the immutable number variable, ensuring no shared mutable state.
+Unsafe Approach
+Shared Mutable State:
+
+The total array is mutable, and each thread increments its first element, leading to race conditions or
+unexpected mutations.
+Potential Issues:
+
+The output might vary based on the thread scheduling and execution order, breaking thread safety.
+Output
+When you run the application, you will see:
+
+Safe Execution:
+
+plaintext
+Copy code
+Running safe task execution:
+Processing number: 1
+Processing number: 2
+Processing number: 3
+Processing number: 4
+Processing number: 5
+All tasks submitted.
+Unsafe Execution:
+
+plaintext
+Copy code
+Running unsafe task execution:
+Total incremented to: 1
+Total incremented to: 2
+Total incremented to: 3
+Total incremented to: 4
+Total incremented to: 5
+All unsafe tasks submitted.
+(Note: In the unsafe example, the order of increments might vary depending on thread execution timing.)
+
+Key Points
+Immutable Objects: Always prefer using immutable objects in lambdas to avoid unintended side effects.
+Effectively Final: While lambdas enforce the "effectively final" rule for variables, mutable objects can still lead
+ to changes in state.
+Thread Safety: In parallel execution, shared mutable state can result in race conditions, leading to incorrect or
+unexpected outcomes.
+By following these principles, you can write clean, safe, and predictable code in Spring applications that leverages
+lambdas effectively.

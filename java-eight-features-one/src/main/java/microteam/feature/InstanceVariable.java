@@ -2,8 +2,6 @@ package microteam.feature;
 
 // Java Program Illustrating Lambda Expression with Instance Variables
 
-import java.io.*;
-
 // Interface
 interface MyInterface {
     void myFunction();

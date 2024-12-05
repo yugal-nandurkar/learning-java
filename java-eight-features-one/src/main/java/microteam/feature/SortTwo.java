@@ -1,6 +1,6 @@
 package microteam.feature;
 
-import java.util.*;
+import java.util.TreeSet;
 
 public class SortTwo {
     public static void main(String[] args)

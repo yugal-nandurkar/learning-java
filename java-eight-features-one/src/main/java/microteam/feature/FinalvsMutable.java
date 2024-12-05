@@ -4,7 +4,6 @@ package microteam.feature;
 // Effectively final and Mutable Local Variables
 
 // Importing required classes
-import java.io.*;
 // An example of capturing a local variable from the
 // enclosing scope
 

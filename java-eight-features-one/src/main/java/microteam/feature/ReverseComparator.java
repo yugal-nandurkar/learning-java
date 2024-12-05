@@ -1,7 +1,8 @@
 package microteam.feature;
 
 // Use a lambda expression to create a reverse comparator
-import java.util.*;
+
+import java.util.TreeSet;
 
 class ReverseComparator{
     public static void main(String args[]){
