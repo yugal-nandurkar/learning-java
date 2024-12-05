@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+                           http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!-- Define a simple bean -->
+    <bean id="myBean" class="microteam.classloader.regular.MyBean">
+        <!-- Constructor injection -->
+        <constructor-arg value="Hello, Spring!" />
+    </bean>
+
+    <!-- Define another bean with property injection -->
+    <bean id="myService" class="microteam.classloader.regular.MyService">
+        <property name="myBean" ref="myBean" />
+    </bean>
+
+    <!-- Define a bean with lifecycle methods -->
+    <bean id="lifecycleBean" class="microteam.classloader.regular.LifecycleBean" init-method="init" destroy-method="destroy" />
+
+    <!-- Define a prototype bean -->
+    <bean id="prototypeBean" class="microteam.classloader.regular.PrototypeBean" scope="prototype" />
+
+    <!-- Define CustomClassLoader bean -->
+    <bean id="customClassLoader" class="microteam.classloader.custom.CustomClassLoader" />
+
+    <!-- Define Versioned CustomClassLoader bean -->
+    <bean id="versionedClassLoader" class="microteam.classloader.versioned.CustomClassLoader" />
+
+    <!-- Example class using the CustomClassLoader -->
+    <bean id="classLoaderService" class="microteam.classloader.versioned.ClassLoaderService">
+        <property name="customClassLoader" ref="versionedClassLoader" />
+    </bean>
+    <!-- Define the ContextClassLoaderAware service that will interact with the context class loader -->
+    <bean id="contextClassLoaderService" class="microteam.classloader.context.ContextClassLoaderService">
+        <property name="contextClassLoader" ref="contextClassLoader"/>
+    </bean>
+
+    <!-- Define a simple class to act as the ContextClassLoader, which is injected dynamically -->
+    <bean id="contextClassLoader" class="microteam.classloader.context.MyCustomClassLoader"/>
+</beans>
