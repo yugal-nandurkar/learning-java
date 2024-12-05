@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+                           http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!-- Primitive Data Types -->
+    <bean id="primitiveBean" class="microteam.datatypes.PrimitiveBean">
+        <property name="integerValue" value="42" />
+        <property name="doubleValue" value="3.14" />
+        <property name="booleanValue" value="true" />
+    </bean>
+
+    <!-- Collection Types -->
+    <bean id="collectionBean" class="microteam.datatypes.CollectionBean">
+        <property name="stringList">
+            <list>
+                <value>Spring</value>
+                <value>Java</value>
+                <value>Hibernate</value>
+            </list>
+        </property>
+        <property name="integerSet">
+            <set>
+                <value>10</value>
+                <value>20</value>
+                <value>30</value>
+            </set>
+        </property>
+        <property name="stringMap">
+            <map>
+                <entry key="key1" value="value1" />
+                <entry key="key2" value="value2" />
+            </map>
+        </property>
+    </bean>
+
+    <!-- Custom Object -->
+    <bean id="customObject" class="microteam.datatypes.CustomObject">
+        <property name="name" value="MyCustomObject" />
+        <property name="value" value="100" />
+    </bean>
+
+    <!-- Injecting a custom object into another bean -->
+    <bean id="objectBean" class="microteam.datatypes.ObjectBean">
+        <property name="customObject" ref="customObject" />
+    </bean>
+
+    <!-- Array Bean -->
+    <bean id="arrayBean" class="microteam.datatypes.ArrayBean">
+        <property name="stringArray">
+            <list>
+                <value>Spring</value>
+                <value>Java</value>
+                <value>Hibernate</value>
+            </list>
+        </property>
+        <property name="intArray">
+            <list>
+                <value>1</value>
+                <value>2</value>
+                <value>3</value>
+            </list>
+        </property>
+        <property name="objectArray">
+            <list>
+                <bean class="microteam.datatypes.CustomObject">
+                    <property name="name" value="Object1" />
+                    <property name="value" value="10" />
+                </bean>
+                <bean class="microteam.datatypes.CustomObject">
+                    <property name="name" value="Object2" />
+                    <property name="value" value="20" />
+                </bean>
+            </list>
+        </property>
+    </bean>
+    <!-- Arithmetic Operation -->
+    <bean id="arithmeticResult" class="java.lang.Integer">
+        <constructor-arg value="#{10 + 5}" />
+    </bean>
+
+    <!-- Relational Operation -->
+    <bean id="relationalResult" class="java.lang.Boolean">
+        <constructor-arg value="#{10 > 5}" />
+    </bean>
+
+    <!-- Logical Operation -->
+    <bean id="logicalResult" class="java.lang.Boolean">
+        <constructor-arg value="#{true and false}" />
+    </bean>
+
+    <!-- Bitwise Operation -->
+    <bean id="bitwiseResult" class="java.lang.Integer">
+        <!-- Use a static method for the bitwise operation -->
+        <constructor-arg value="#{T(microteam.operators.BitwiseUtils).bitwiseAnd(6, 3)}" />
+    </bean>
+</beans>
