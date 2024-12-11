@@ -1,3 +1,3 @@
-package microteam.new_features.library;
+package microteam.records.library;
 
 public record Book(String title, String author, String isbn) {}

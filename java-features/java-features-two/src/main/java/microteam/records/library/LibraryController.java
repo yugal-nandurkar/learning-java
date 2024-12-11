@@ -1,4 +1,4 @@
-package microteam.new_features.library;
+package microteam.records.library;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;

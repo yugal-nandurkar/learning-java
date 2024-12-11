@@ -1,4 +1,4 @@
-package microteam.new_features.library;
+package microteam.records.library;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
