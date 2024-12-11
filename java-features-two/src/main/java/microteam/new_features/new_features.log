@@ -1,0 +1,10 @@
+Explanation of Java 8 Features Integration
+Lambda Expressions: Used in the filterStringsUsingLambda method to filter a list of strings.
+Method References: Applied in the mapStringsToLengthsUsingMethodReference method to calculate string lengths.
+Optional: Demonstrated with getOptionalValue to provide a fallback for missing values.
+Functional Interface: A simple Greeting interface implemented using a lambda.
+Default Methods: The Calculator interface demonstrates default methods in interfaces.
+Nashorn JavaScript Engine: Evaluates JavaScript code using the Nashorn engine.
+Stream API: Demonstrates filtering, mapping, and sorting a list of strings.
+Date API: Provides examples of formatting the current date and parsing a given date.
+
